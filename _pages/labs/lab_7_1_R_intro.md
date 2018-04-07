@@ -18,7 +18,7 @@ R is a language and environment for statistical computing and graphics. R and it
 * Excellent community support: mailing list, blogs, tutorials
 * Easy to extend by writing new functions
 
-### Lab Setup
+**Lab Setup**
 
 1. Option: Use **RStudio** (free and open-source integrated development environment for R)
 
@@ -55,19 +55,19 @@ q()
 * Execute commands.
 * Try tab completion. 
 
-#### Add 3 plus 3 in R.
+**Add 3 plus 3 in R.**
 
 ```R
 3 + 3
 ```
 
-#### Calculate the squre root of 7.
+**Calculate the squre root of 7.**
 
 ```R
 sqrt(7)
 ```
 
-#### Install and load the package ggplot2.
+**Install and load the package ggplot2.**
 
 ```R
 install.packages("ggplot2")
@@ -78,7 +78,7 @@ Alternative: In Rstudio, go to the "Packages" tab and click the "Istall" button.
 Search in the pop-up window and click "Install".
 
 
-#### Using R help.
+**Using R help.**
 
 ```R
 help(help)
@@ -91,7 +91,7 @@ help(sqrt)
 
 ### Excercise 1: R basics.
 
-#### Variable assignment
+**Variable assignment**
 
 Values can be assigned names and used in subsequent operations.
 
@@ -103,7 +103,7 @@ sqrt(7) #calculate square root of 7; result is not stored anywhere
 x <- sqrt(7) #assign result to a variable named x
 ```
 
-#### Calling R functions and reading data
+**Calling R functions and reading data**
 
 We will use an example project of the most popular baby names in the United States and the United Kingdom. A cleaned and merged version of the data file is available at ***http://tutorials.iq.harvard.edu/R/Rintro/dataSets/babyNames.csv***.
 
@@ -177,7 +177,7 @@ baby.names[baby.names$Name == "jill",]
 ```
 
 	
-#### Relational and logical operators
+**Relational and logical operators**
 
 Operator | Meaning
 --- | --- | ---
@@ -197,7 +197,7 @@ How many babies were born after 2003? Save the subset in a new dataframe.
 
 
 
-#### Adding columns
+**Adding columns**
 
 Add a new column specifying the country.
 
@@ -271,7 +271,7 @@ Output:
 table(baby.names$Country)
 ```
 
-#### Replacing data entries
+**Replacing data entries**
 
 ```R
 table(baby.names$Sex)
@@ -292,7 +292,7 @@ Check the output table again.
 
 Now that we have made some changes to our data set, we might want to save those changes to a file.
 
-#### Save the output as a csv file
+**Save the output as a csv file**
 
 ```R
 getwd() # Check current working directory. Is this where you want to save your file?
@@ -306,7 +306,7 @@ How would you save other file formats?
 Locate and open the file outside of R.
 
 
-#### Save the output as an R object
+**Save the output as an R object**
 
 ```R
 save(baby.names, file="babyNames.Rdata")
@@ -342,7 +342,7 @@ Which are the longest names?
 
 Which are the shortest names?
 
-#### Summary of the whole data.frame
+**Summary of the whole data.frame**
 
 ```R
 summary(baby.names)
@@ -353,7 +353,7 @@ summary(baby.names)
 ### Excercise 6: Simple graphs.
 
 
-#### Boxplots
+**Boxplots**
 
 Compare the length of baby names for boys and girls using a boxplot.
 
@@ -375,7 +375,7 @@ Change the layout of the plot:
     * http://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3
 
 
-### Save plot as a pdf 
+**Save plot as a pdf**
 
 ```R
 pdf(file="boxplot.pdf")
@@ -390,7 +390,7 @@ What about other file formats?
 
 
 
-#### Histograms
+**Histograms**
 
 How many names were recorded for each year?
 
