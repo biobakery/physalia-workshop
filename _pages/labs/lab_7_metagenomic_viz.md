@@ -42,7 +42,7 @@ load(file="Data/metaphlan_merged_MGX_species_relAb.Rdata")
 
 
 
-#### Load the packages that we will need for the tutorial. (Install them if necessary.)
+**Load the packages that we will need for the tutorial. (Install them if necessary.)**
 
 ```R
 library(vegan)
@@ -50,9 +50,9 @@ library(ggplot2)
 library(grid)
 ```
 
-## 1. Visualization techniques: PCoAs and Biplots of microbial species data
+### 1. Visualization techniques: PCoAs and Biplots of microbial species data
 
-### Prepare the data
+**Prepare the data**
 
 * Extract the metadata
 
@@ -73,7 +73,7 @@ species[1:4,1:4] # check the output
 ```
 
 
-### Ordination: PCoA with Bray-Curtis distance
+#### Ordination: PCoA with Bray-Curtis distance
 ```R
 data.bray=vegdist(species)
 data.b.pcoa=cmdscale(data.bray,k=(nrow(species)-1),eig=TRUE)
@@ -94,7 +94,7 @@ p = ggplot(pcoa, aes(x=PC1, y=PC2)) + geom_point(size=4) + theme_bw()
 p
 ```
 
-#### Adding additional information to the plot: colours and shapes
+**Adding additional information to the plot: colours and shapes**
 
 Which metadata would be interesting to include in the plot?
 
@@ -111,7 +111,7 @@ pcoa$time_point = gsub("C","",metadata$Time_point)
 head(pcoa) # check the data.frame
 ```
 
-#### Colour by diagnosis
+**Colour by diagnosis**
 
 ```R
 p = ggplot(pcoa, aes(x=PC1, y=PC2, color=diagnosis)) + geom_point(size=4) + theme_bw()
@@ -131,7 +131,7 @@ p = p + guides(col=guide_legend(title="Diagnosis"))
 p
 ```
 
-#### Exercise: Display diagnosis as a shape instead!
+**Exercise: Display diagnosis as a shape instead!**
 
 <!-- p = ggplot(pcoa, aes(x=PC1, y=PC2, shape=diagnosis)) + geom_point(size=4) + theme_bw()
 p = p + guides(shape=guide_legend(title="Diagnosis"))
@@ -145,7 +145,7 @@ p = p + scale_shape_manual(values=c(23,22,19))
 p
 ```
 
-#### Highlight inter-individual variation: Colour by individual
+**Highlight inter-individual variation: Colour by individual**
 
 How many participants are there and how many time points per participant?
 
@@ -188,7 +188,7 @@ For loops are not very effective in R. A better way to do this is by using sappl
 ?sapply
 ```
 
-#### Excercise: Create the colour varialbe using sapply. Check that the resulting variable is identical to the one we just created with the for loop.
+**Excercise: Create the colour varialbe using sapply. Check that the resulting variable is identical to the one we just created with the for loop.**
 
 <!---
 longitudinal_colour_v2=NA
@@ -240,7 +240,7 @@ dev.off()
 ```
 
 
-#### Adding time course information for some individuals
+**Adding time course information for some individuals**
 
 Next we will connect all sample from a particular patient and add time point numbers to the plot.
 
@@ -265,7 +265,7 @@ p
 ```
 
 
-#### Excercise: Add time courses for 3 more participants!
+**Excercise: Add time courses for 3 more participants!**
 
 <!---
 patient2="C3001"
@@ -347,7 +347,7 @@ p_biplot
 ```
 
 
-#### Adding specific species to the plot
+**Adding specific species to the plot**
 
 ```R
 list=c("s__Collinsella_intestinalis",                     
@@ -435,9 +435,9 @@ head(MGX_pwys[,1:2], n=30)
 
 What does the stratification "unclassified" mean?
 
-#### Create a list of all pathways that were detected in the metagenomic and metatranscriptomic data, respectively. How many are there? ```grep``` the pathway totals
+**Create a list of all pathways that were detected in the metagenomic and metatranscriptomic data, respectively. How many are there? ```grep``` the pathway totals**
 
-#### Metagenomic data
+**Metagenomic data**
 
 ```R
 MGX_pwy_lst_all = unique(gsub("\\|.*", "", MGX_pwys$Pathway))
@@ -447,7 +447,7 @@ MGX_pwy_lst = MGX_pwy_lst_all[intersect(grep("UNMAPPED", MGX_pwy_lst_all, invert
 length(MGX_pwy_lst)
 ```
 
-#### Metatranscriptomic data
+**Metatranscriptomic data**
 
 ```R
 MTX_pwy_lst_all = unique(gsub("\\|.*", "", MTX_pwys$Pathway))
@@ -458,7 +458,7 @@ length(MTX_pwy_lst)
 ```
 
 
-### Compute alpha diversity for each pathway in each sample
+**Compute alpha diversity for each pathway in each sample**
 
 We will define a function that we can apply to the metagenomic and metatranscriptomic data:
 
@@ -561,7 +561,7 @@ rownames(MTX_a_div)= sapply(seq(1,length(MTX_pwy_lst)), function(p) as.character
 nrow(MTX_a_div)
 ```
 
-#Remove rows that are all "-1" and are all contributed by "unclassified"
+Remove rows that are all "-1" and are all contributed by "unclassified".
 
 ```R
 MTX_a_div = MTX_a_div[apply(MTX_a_div, 1, function(x) sum(x==-1)!=ncol(MTX_a_div)),]
@@ -602,7 +602,7 @@ summary_MTX_a_div = apply(MTX_a_div_sub, 1, function(x) mean(x[x>=0]))
 ```
 
 
-### Alpha diversity plots
+**Alpha diversity plots**
 
 We will compare the mean alpha-diversity for each pathway on the RNA level (y-axis) and DNA level (x-axis). Each point will represents one pathway and the color will indicates the mean RNA/DNA ratio across all samples on a log scale.
 
@@ -643,7 +643,7 @@ g
 dev.off()
 ```
 
-### Now we want to colour the points by the log DNA/RNA ratio of each pathway.
+**Now we want to colour the points by the log DNA/RNA ratio of each pathway.**
 
 Create variable that reflects the dna/rna ratio
 
